@@ -1,20 +1,72 @@
-.flame .hero {
+.wrapper {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
 }
 
-.flame h1 {
+.hero {
+}
+
+h1 {
   font-size: 100px;
 }
 
-.flame a {
+a {
   text-decoration: none;
   margin: 20px;
 }
 
 .highlight {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(173, 133, 133, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  border-radius: 20px;
+  display: block;
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+  transition: all 0.3s;
+}
+
+.target {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.target1 {
+  font-size: 40px;
+  top: 20vh;
+  left: 30vw;
+}
+
+.target2 {
+  font-size: 34px;
+  top: 15vh;
+  left: 75vw;
+}
+
+.target3 {
+  font-size: 44px;
+  top: 40vh;
+  left: 65vw;
+}
+
+.target4 {
+  font-size: 20px;
+  top: 55vh;
+  left: 20vw;
+}
+
+.target5 {
+  font-size: 27px;
+  top: 75vh;
+  left: 40vw;
+}
+
+.target6 {
+  font-size: 57px;
+  top: 80vh;
+  left: 70vw;
 }

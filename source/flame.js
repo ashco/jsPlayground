@@ -4,7 +4,7 @@ const targets = Array.from(document.querySelectorAll('.target a'));
 
 const highlight = document.createElement('span');
 highlight.classList.add('highlight');
-document.querySelector('.flame').appendChild(highlight);
+document.querySelector('.wrapper').appendChild(highlight);
 
 const walk = 10;
 
@@ -39,10 +39,10 @@ function targetHighlight() {
   const linkCoords = this.getBoundingClientRect();
   console.log(linkCoords);
   const coords = {
-    width: linkCoords.width,
-    height: linkCoords.height,
-    top: linkCoords.top,
-    left: linkCoords.left,
+    width: linkCoords.width * 1,
+    height: linkCoords.height * 1,
+    top: linkCoords.top + window.scrollY,
+    left: linkCoords.left + window.scrollX,
   };
 
   highlight.style.width = `${coords.width}px`;
