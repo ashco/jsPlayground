@@ -1,31 +1,57 @@
-// const hero = document.querySelector(".hero");
-// const flame = document.querySelector("h1");
-// const walk = 10;
+const hero = document.querySelector('.hero');
+const flame = document.querySelector('h1');
+const targets = Array.from(document.querySelectorAll('.target a'));
 
-// let xFlicker;
-// let yFlicker;
+const highlight = document.createElement('span');
+highlight.classList.add('highlight');
+document.querySelector('.flame').appendChild(highlight);
 
-// function shadow(xFlicker, yFlicker) {
-//   flame.style.textShadow = `
-//     ${xFlicker}px ${yFlicker}px 0 rgba(236, 51, 36, .7),
-//     ${xFlicker * -1}px ${yFlicker}px 0 rgba(234, 139, 37, 0.7),
-//     ${yFlicker}px ${yFlicker * -1}px 0 rgba(255, 135, 37, 0.7),
-//     ${yFlicker * -1}px ${yFlicker}px 0 rgba(252, 214, 63, 0.7)
-//   `;
-// }
+const walk = 10;
 
-// function flicker() {
-//   setInterval(() => {
-//     xFlicker = Math.random() * walk - walk / 2;
-//     yFlicker = Math.random() * walk - walk / 2;
-//     shadow(xFlicker, yFlicker);
-//   }, 100);
-// }
+let xFlicker;
+let yFlicker;
 
-// function selector(){
+function shadow(xFlicker, yFlicker) {
+  flame.style.textShadow = `
+    ${xFlicker}px ${yFlicker}px 0 rgba(236, 51, 36, .7),
+    ${xFlicker * -1}px ${yFlicker}px 0 rgba(234, 139, 37, 0.7),
+    ${yFlicker}px ${yFlicker * -1}px 0 rgba(255, 135, 37, 0.7),
+    ${yFlicker * -1}px ${yFlicker}px 0 rgba(252, 214, 63, 0.7)
+  `;
+}
 
-// }
+function flicker() {
+  setInterval(() => {
+    xFlicker = Math.random() * walk - walk / 2;
+    yFlicker = Math.random() * walk - walk / 2;
+    shadow(xFlicker, yFlicker);
+  }, 100);
+}
 
-// flame.addEventListener('onclick', selector);
+function selector() {}
 
-// flicker();
+function targetClick(e) {
+  e.preventDefault();
+  this.textContent = '⚫️';
+}
+
+function targetHighlight() {
+  const linkCoords = this.getBoundingClientRect();
+  console.log(linkCoords);
+  const coords = {
+    width: linkCoords.width,
+    height: linkCoords.height,
+    top: linkCoords.top,
+    left: linkCoords.left,
+  };
+
+  highlight.style.width = `${coords.width}px`;
+  highlight.style.height = `${coords.height}px`;
+  highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+}
+
+flame.addEventListener('onclick', selector);
+targets.forEach(target => target.addEventListener('mouseenter', targetHighlight));
+targets.forEach(target => target.addEventListener('click', targetClick));
+
+flicker();
